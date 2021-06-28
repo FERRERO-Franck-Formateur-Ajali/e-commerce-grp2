@@ -4,7 +4,7 @@
 https://get.symfony.com/cli/setup.exe
 
 ### Cloner le projet   
-git clone https://github.com/madbrain67/STARTER-KIT-SYMFONY.git  
+git clone https://github.com/FERRERO-Franck-Formateur-Ajali/e-commerce-grp2.git
   
 ### Installer les dépendances/vendor    
 composer install  
