@@ -1,4 +1,4 @@
-# e-commerce-grp1
+# e-commerce-grp2
 
 ### installation du CLI symfony 
 https://get.symfony.com/cli/setup.exe
