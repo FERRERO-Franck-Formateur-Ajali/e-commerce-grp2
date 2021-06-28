@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Créer un compte{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<button rtype="submit" class="btn btn-primary">enregistrer</button>
+{{ form_end(form) }}
+{% endblock %}
