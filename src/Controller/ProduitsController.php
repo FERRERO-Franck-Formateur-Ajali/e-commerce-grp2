@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProduitsController extends AbstractController
 {
     /**
-     * @Route("/produits", name="produits")
+     * @Route("/produits", name="produits_index")
      */
     public function index(ProduitsRepository $produitsRepository): Response
     {

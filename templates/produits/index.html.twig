@@ -15,15 +15,16 @@
 {% for produit in produits %}
     <div class="col-4 mt-4">
         <div class="border border-dark rounded p-2 clearfix">
-            <h2>
+            <h4>
                 {{ produit.titre }}
-                -
+            </h4><p>-
                 {{ produit.description }}
                 -
                 {{ produit.prix }}
-                €
-            </h2>
-            <img class="img-fluid rounded" src="{{ produit.image }}" alt="Image de {{ produit.titre }}">
+                €</p>
+            
+            <img class="img-fluid rounded" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="200" 
+     height=auto>
             <hr>
             <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success float-right">
                 <i class="fas fa-shopping-cart mr-1"></i>
@@ -34,13 +35,5 @@
     </div>
 {% endfor %}
 </div>
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/e-commerce-grp2/src/Controller/ProduitsController.php'|file_link(0) }}">src/Controller/ProduitsController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/e-commerce-grp2/templates/produits/index.html.twig'|file_link(0) }}">templates/produits/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
