@@ -9,9 +9,11 @@
 </style>
 <div class="bg-light p-3">
 <h1>Les produits</h1>
-</div>
 
+{{ form(form) }}
+</div>
 <div class="row">
+
 {% for produit in produits %}
     <div class="col-4 mt-4">
         <div class="border border-dark rounded p-2 clearfix">
@@ -19,6 +21,8 @@
                 {{ produit.titre }}
             </h4><p>-
                 {{ produit.description }}
+                - {{ produit.couleur }}
+                - {{ produit.taille }}
                 -
                 {{ produit.prix }}
                 €</p>

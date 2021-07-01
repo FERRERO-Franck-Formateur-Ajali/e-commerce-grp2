@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
+ * @ORM\Table(name="produits", indexes={@ORM\Index(columns={"titre", "description"}, flags={"fulltext"})})
  */
 class Produits
 {
@@ -41,6 +42,21 @@ class Produits
      * @ORM\Column(type="integer")
      */
     private $stock;
+
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     */
+    private $couleur;
+
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     */
+    private $taille;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $actif;
 
     public function getId(): ?int
     {
@@ -103,6 +119,42 @@ class Produits
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getCouleur(): ?string
+    {
+        return $this->couleur;
+    }
+
+    public function setCouleur(?string $couleur): self
+    {
+        $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    public function getTaille(): ?string
+    {
+        return $this->taille;
+    }
+
+    public function setTaille(?string $taille): self
+    {
+        $this->taille = $taille;
+
+        return $this;
+    }
+
+    public function getActif(): ?bool
+    {
+        return $this->actif;
+    }
+
+    public function setActif(?bool $actif): self
+    {
+        $this->actif = $actif;
 
         return $this;
     }
