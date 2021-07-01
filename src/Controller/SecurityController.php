@@ -38,6 +38,9 @@ class SecurityController extends AbstractController
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+        }
+
         return $this->render('security/register.html.twig', [
             'form' => $form->createView(),
         ]);
