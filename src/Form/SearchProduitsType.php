@@ -18,8 +18,16 @@ class SearchProduitsType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' =>  'Entrez un ou plusieurs termes'
-                ]
+                ],
+                'required' => false,
             ])
+            /* ->add('categorie', EntityType::class, [
+                'class' => Categories::class,
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])*/
             ->add('Rechercher', SubmitType::class,[
                 'attr' => [
                     'class' => 'btn-primary',

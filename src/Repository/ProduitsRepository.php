@@ -6,6 +6,7 @@ use App\Entity\Produits;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method Produits|null find($id, $lockMode = null, $lockVersion = null)
  * @method Produits|null findOneBy(array $criteria, array $orderBy = null)
@@ -21,15 +22,24 @@ class ProduitsRepository extends ServiceEntityRepository
 
     /**
      * Recherche les produits en fonction de la recherche
-     * @return void
      */
-    public function search($mots){
+    public function search(string $mots = NULL)
+    {
         $query = $this->createQueryBuilder('p');
-        $query->where('a.active = 1');
-        if($mots != null){
-            $query->andWhere('MATCH_AGAINST(a.titre, a.description) AGAINST(:mots boolean)>0')
+        $query->where('p.actif = 1');
+        
+       
+        if($mots !== null){
+
+            /*     
+            $query->andWhere('MATCH_AGAINST(p.titre, p.description) AGAINST(:mots boolean)>0')
                 ->setParameter('mots', $mots);
+                */
+            $query->andWhere('p.titre LIKE :mots OR p.description LIKE :mots');
+
+            $query->setParameter('mots', '%'.$mots.'%');
         }
+        
         return $query->getQuery()->getResult();
     }
 

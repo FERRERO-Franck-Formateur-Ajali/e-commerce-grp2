@@ -15,18 +15,17 @@ class ProduitsController extends AbstractController
     /**
      * @Route("/produits", name="produits_index")
      */
-    public function index(ProduitsRepository $produitsRepository, Request $Request): Response
+    public function index(Request $Request, ProduitsRepository $produitsRepository): Response
     {   
-       // $produits = $produitsRepository->findBy(['active' => Null],5);  
-        $produits = $this->getDoctrine()->getRepository(Produits::class)->findall();
+        $produits = $this->getDoctrine()->getRepository(Produits::class)->findAll();
 
         $form = $this ->createForm(SearchProduitsType::class);
-        
-        $search = $form->handleRequest($Request);
+        $form->handleRequest($Request);
 
         if($form->isSubmitted() && $form->isValid()){
             // on recherche annonces correponsant aux mots cles
-            $produits = $produitsRepository->search($search->get('mots')->getData());
+            $produits = $produitsRepository->search($form->get('mots')->getData());
+            dump($produits);
         }
 
         return $this->render('produits/index.html.twig', [

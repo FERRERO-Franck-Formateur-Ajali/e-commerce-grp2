@@ -19,13 +19,11 @@
         <div class="border border-dark rounded p-2 clearfix">
             <h4>
                 {{ produit.titre }}
-            </h4><p>-
-                {{ produit.description }}
+            </h4><p>
+                - {{ produit.description }}
                 - {{ produit.couleur }}
                 - {{ produit.taille }}
-                -
-                {{ produit.prix }}
-                €</p>
+                - {{ produit.prix }} €</p>
             
             <img class="img-fluid rounded" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="200" 
      height=auto>

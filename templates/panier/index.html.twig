@@ -16,7 +16,8 @@
         <tbody>
             {% for item in items %}
                 <tr>
-                    <td>{{ item.produit.titre }}</td>
+                    <td><img class="img-fluid rounded" src="{{ item.produit.image }}" alt="Image de {{ item.produit.titre }}" width="50" 
+                    height=auto>{{ item.produit.titre }}</td>
                     <td>{{ item.produit.prix }}</td>
                     <td>{{ item.quantité }}</td>
                     <td>{{ item.produit.prix * item.quantité}}</td>

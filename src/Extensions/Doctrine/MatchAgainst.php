@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Extensions\Doctrine;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
