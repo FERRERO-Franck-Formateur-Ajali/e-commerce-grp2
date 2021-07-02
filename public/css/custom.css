@@ -1,17 +1,20 @@
-body {
-    background: #f8fcff;
-}
 .txt-black {
     color: #202020 !important;
+    text-shadow: 0 0 2px #959595;
 }
 .txt-white {
-    color: #f8fcff !important;
+    color: #eceff1 !important;
+    text-shadow: 0 0 2px #BBBBBB;
+}
+.txt-red {
+    color: #f00 !important;
 }
 .bg-black {
     background: #202020 !important;
 }
 .bg-white {
-    background: #f8fcff !important;
+    background: #eceff1 !important;
+    box-shadow: inset 0 0 3px #353535;
 };
 .bll-1 {
     border-left: 1px solid #202020 !important;
@@ -26,27 +29,31 @@ border-top: 1px solid #202020 !important;
 border-bottom: 1px solid #202020 !important;
 }
 .wll-1 {
-    border-left: 1px solid #f8fcff !important;
+    border-left: 1px solid #eceff1 !important;
 }
 .wlr-1 {
-border-right: 1px solid #f8fcff !important;
+border-right: 1px solid #eceff1 !important;
 }
 .wlt-1 {
-border-top: 1px solid #f8fcff !important;
+border-top: 1px solid #eceff1 !important;
 }
 .wlb-1 {
-border-bottom: 1px solid #f8fcff !important;
+border-bottom: 1px solid #eceff1 !important;
 }
 .box-black {
     border: 1px solid #202020 !important;
-    border-radius: 6px !important;
+    border-radius: 16px !important;
 }
 .box-white {
-    border: 1px solid #f8fcff !important;
-    border-radius: 6px !important;
+    border: 1px solid #eceff1 !important;
+    border-radius: 16px !important;
 }
-.bg-bg {
-    background: linear-gradient(to top, #151515, #252525) !important;
+.box {
+    border: 1px solid #202020 !important;
+    border-radius: 2px !important;
+}
+.bg-bg,body {
+    background: linear-gradient(to top, #101010, #353535) !important;
 }
 .txt-xl {
     font-size: x-large;
