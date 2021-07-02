@@ -1,0 +1,87 @@
+body {
+    background: #f8fcff;
+}
+.txt-black {
+    color: #202020 !important;
+}
+.txt-white {
+    color: #f8fcff !important;
+}
+.bg-black {
+    background: #202020 !important;
+}
+.bg-white {
+    background: #f8fcff !important;
+};
+.bll-1 {
+    border-left: 1px solid #202020 !important;
+}
+.blr-1 {
+border-right: 1px solid #202020 !important;
+}
+.blt-1 {
+border-top: 1px solid #202020 !important;
+}
+.blb-1 {
+border-bottom: 1px solid #202020 !important;
+}
+.wll-1 {
+    border-left: 1px solid #f8fcff !important;
+}
+.wlr-1 {
+border-right: 1px solid #f8fcff !important;
+}
+.wlt-1 {
+border-top: 1px solid #f8fcff !important;
+}
+.wlb-1 {
+border-bottom: 1px solid #f8fcff !important;
+}
+.box-black {
+    border: 1px solid #202020 !important;
+    border-radius: 6px !important;
+}
+.box-white {
+    border: 1px solid #f8fcff !important;
+    border-radius: 6px !important;
+}
+.bg-bg {
+    background: linear-gradient(to top, #151515, #252525) !important;
+}
+.txt-xl {
+    font-size: x-large;
+}
+.txt-l {
+font-size: large;
+}
+.txt-m {
+font-size: medium;
+}
+.txt-s {
+font-size: small;
+}
+.txt-xs {
+font-size: x-small;
+}
+.navbar .megamenu{
+    padding: 1rem;
+}
+@media all and (min-width: 992px) {
+
+.navbar .has-megamenu {
+    position: static !important;
+    }
+    .navbar .megamenu {
+        left:0;
+        right:0;
+        width:100%;
+        padding-top:0;
+    }
+}
+@media(max-width: 991px) {
+    .navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse {
+        overflow-y: auto;
+        max-height: 90vh;
+        padding-top:10px;
+    }
+}
