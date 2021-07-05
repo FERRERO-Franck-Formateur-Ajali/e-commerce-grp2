@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home | Oxygen Live{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'E:/ALAJI/e-commerce/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'E:/ALAJI/e-commerce/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+<div class="card-deck mt-5">
+  <div class="card bg-white box-black pt-3 text-center">
+    <i class="far fa-times-circle txt-xl txt-black"></i>
+    <div class="card-body txt-black">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+        content. This content is a little bit longer.</p>
+    </div>
+  </div>
+  <div class="card bg-white box-black pt-3 text-center">
+    <i class="far fa-times-circle txt-xl txt-black"></i>
+    <div class="card-body txt-black">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+  </div>
+  <div class="card bg-white box-black pt-3 text-center">
+    <i class="far fa-times-circle txt-xl txt-black"></i>
+    <div class="card-body txt-black">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+        additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+  </div>
+  <div class="card bg-white box-black pt-3 text-center">
+    <i class="far fa-times-circle txt-xl txt-black"></i>
+    <div class="card-body txt-black">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Eligendi voluptas nesciunt ipsam id, non itaque aspernatur repudiandae.</p>
+    </div>
+  </div>
 </div>
 {% endblock %}
