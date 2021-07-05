@@ -1,16 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProduitsController!{% endblock %}
+{% block title %}ProduitController!{% endblock %}
 
 {% block body %}
-<div class="p-3">
-<h1 class="txt-white">Les produits</h1>
-
-</div>
-<div class="row">
-
-{% for produit in produits %}
-    <div class="col-4 mt-4">
+<div class="col-4 mt-4">
         <div class="box-black bg-white txt-black p-2 clearfix">
             <a href="{{ path('show_produit', {'id': produit.id}) }}" class="txt-xl txt-black">
                 {{ produit.titre }}
@@ -30,7 +23,4 @@
         </div>
 
     </div>
-{% endfor %}
-</div>
-
 {% endblock %}

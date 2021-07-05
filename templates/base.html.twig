@@ -5,13 +5,13 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/custom.css"> 
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <nav class="container-fluid navbar navbar-expand-lg txt-white bg-bg">
             <div class="mr-auto col-1">
-                <a href="" class="navbar-brand txt-xl txt-white mx-3">Oxygen Live</a>
+                <a href="/" class="navbar-brand txt-xl txt-white mx-3">Oxygen Live</a>
             </div>
             <form class="col-8 mr-4">
                 <div class="input-group-prepend">
@@ -19,12 +19,12 @@
                     <input type="text" class="form-control bg-white box-black txt-black" id="searchBar" placeholder="Search...">
                 </div>
             </form>
-            <a href="#" class="nav-link far fa-heart txt-white mr-1 txt-xl"></a>
-            <a href="#" class="nav-link fas fa-shopping-cart txt-white mx-1 txt-xl"></a>
-            <a href="#" class="nav-link far fa-user-circle txt-white mx-1 txt-xl"></a>
+            <a href="#" class="nav-link far fa-heart txt-white mr-1 txt-l"></a>
+            <a href="panier" class="nav-link fas fa-shopping-cart txt-white mx-1 txt-l"></a>
+            <a href="account" class="nav-link far fa-user-circle txt-white mx-1 txt-l"></a>
         </nav>
         <nav class="navbar navbar-expand-lg navbar-light bg-white blb-1">
-            <a class="navbar-brand ml-5">Sections</a>
+            <a class="navbar-brand ml-5 txt-black">Sections</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
                 <span class="navbar-toggler-icon"></span>
             </button>
