@@ -31,13 +31,13 @@ class ProduitsRepository extends ServiceEntityRepository
        
         if($mots !== null){
 
-            /*     
+             /*     
             $query->andWhere('MATCH_AGAINST(p.titre, p.description) AGAINST(:mots boolean)>0')
                 ->setParameter('mots', $mots);
-                */
-            $query->andWhere('p.titre LIKE :mots OR p.description LIKE :mots');
+              */
+            $query->andWhere('p.titre LIKE :mots OR p.description LIKE :mots OR p.couleur LIKE :mots OR p.taille LIKE :mots');
 
-            $query->setParameter('mots', '%'.$mots.'%');
+            $query->setParameter('mots', '%'.$mots.'%'); 
         }
         
         return $query->getQuery()->getResult();
