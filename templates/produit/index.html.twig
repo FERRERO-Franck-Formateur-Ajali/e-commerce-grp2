@@ -3,18 +3,18 @@
 {% block title %}ProduitController!{% endblock %}
 
 {% block body %}
+<h1 href="{{ path('show_produit', {'id': produit.id}) }}" class="mt-5 txt-xxl txt-white">
+    {{ produit.titre }}
+</h1>
 <div class="d-flex box-black bg-white txt-black p-2 my-5">
     <div class="col-4">
-        <img class="img-fluid box-black" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="400" height=auto>
+        <img class="img-fluid box-black my-3" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="400" height=auto>
     </div>
     <div class="col-8">
-        <h1 href="{{ path('show_produit', {'id': produit.id}) }}" class="txt-xl txt-black">
-            {{ produit.titre }}
-        </h1>
         <p>
-            {{ produit.description }}<br>
-            {{ produit.couleur }}<br>
-            {{ produit.taille }}<br>
+            {{ produit.description }}<br><br>
+            {{ produit.couleur }}<br><br>
+            {{ produit.taille }}<br><br>
             {{ produit.prix }} €</p>
         <hr>
         <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success float-right">
