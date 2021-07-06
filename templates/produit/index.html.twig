@@ -3,24 +3,24 @@
 {% block title %}ProduitController!{% endblock %}
 
 {% block body %}
-<div class="col-4 mt-4">
-        <div class="box-black bg-white txt-black p-2 clearfix">
-            <a href="{{ path('show_produit', {'id': produit.id}) }}" class="txt-xl txt-black">
-                {{ produit.titre }}
-            </a><p>
-                - {{ produit.description }}
-                - {{ produit.couleur }}
-                - {{ produit.taille }}
-                - {{ produit.prix }} €</p>
-            
-            <img class="img-fluid box-black" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="200" 
-     height=auto>
-            <hr>
-            <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success float-right">
-                <i class="fas fa-shopping-cart mr-1"></i>
-                Ajouter
-            </a>
-        </div>
-
+<div class="d-flex box-black bg-white txt-black p-2 my-5">
+    <div class="col-4">
+        <img class="img-fluid box-black" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="400" height=auto>
     </div>
+    <div class="col-8">
+        <h1 href="{{ path('show_produit', {'id': produit.id}) }}" class="txt-xl txt-black">
+            {{ produit.titre }}
+        </h1>
+        <p>
+            {{ produit.description }}<br>
+            {{ produit.couleur }}<br>
+            {{ produit.taille }}<br>
+            {{ produit.prix }} €</p>
+        <hr>
+        <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success float-right">
+            <i class="fas fa-shopping-cart mr-1"></i>
+            Ajouter
+        </a>
+    </div>
+</div>
 {% endblock %}

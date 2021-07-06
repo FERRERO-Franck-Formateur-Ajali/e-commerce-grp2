@@ -55,20 +55,23 @@ border-bottom: 1px solid #eceff1 !important;
 .bg-bg,body {
     background: linear-gradient(to top, #101010, #353535) !important;
 }
+.txt-xxl {
+    font-size: xx-large;
+}
 .txt-xl {
     font-size: x-large;
 }
 .txt-l {
-font-size: large;
+    font-size: large;
 }
 .txt-m {
-font-size: medium;
+    font-size: medium;
 }
 .txt-s {
-font-size: small;
+    font-size: small;
 }
 .txt-xs {
-font-size: x-small;
+    font-size: x-small;
 }
 .navbar .megamenu{
     padding: 1rem;

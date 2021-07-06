@@ -17,7 +17,7 @@
             {% for item in items %}
                 <tr class="txt-white">
                     <td><img class="img-fluid box-black" src="{{ item.produit.image }}" alt="Image de {{ item.produit.titre }}" width="50" 
-                    height=auto>{{ item.produit.titre }}</td>
+                    height=auto><a class="ml-3 txt-white" href="{{ path('show_produit', {'id': item.produit.id}) }}">{{ item.produit.titre }}</a></td>
                     <td>{{ item.produit.prix }}</td>
                     <td>{{ item.quantité }}</td>
                     <td>{{ item.produit.prix * item.quantité}}</td>
