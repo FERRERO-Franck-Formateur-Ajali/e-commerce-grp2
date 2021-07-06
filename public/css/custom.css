@@ -1,10 +1,10 @@
 .txt-black {
     color: #202020 !important;
-    text-shadow: 0 0 2px #959595;
+    text-shadow: 0 0 1px #959595;
 }
 .txt-white {
     color: #eceff1 !important;
-    text-shadow: 0 0 2px #BBBBBB;
+    text-shadow: 0 0 1px #BBBBBB;
 }
 .txt-red {
     color: #f00 !important;
@@ -55,20 +55,23 @@ border-bottom: 1px solid #eceff1 !important;
 .bg-bg,body {
     background: linear-gradient(to top, #101010, #353535) !important;
 }
+.txt-xxl {
+    font-size: xx-large;
+}
 .txt-xl {
     font-size: x-large;
 }
 .txt-l {
-font-size: large;
+    font-size: large;
 }
 .txt-m {
-font-size: medium;
+    font-size: medium;
 }
 .txt-s {
-font-size: small;
+    font-size: small;
 }
 .txt-xs {
-font-size: x-small;
+    font-size: x-small;
 }
 .navbar .megamenu{
     padding: 1rem;
