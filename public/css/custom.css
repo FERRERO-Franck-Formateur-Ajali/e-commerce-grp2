@@ -1,10 +1,12 @@
-.txt-black {
+.txt-black, .txt-black:hover {
     color: #202020 !important;
     text-shadow: 0 0 1px #959595;
+    text-decoration: none;
 }
-.txt-white {
+.txt-white, .txt-white:hover {
     color: #eceff1 !important;
     text-shadow: 0 0 1px #BBBBBB;
+    text-decoration: none;
 }
 .txt-red {
     color: #f00 !important;
