@@ -10,25 +10,28 @@
 <div class="row">
 
 {% for produit in produits %}
-    <div class="col-4 mt-4">
-        <div class="box-black bg-white txt-black p-2 clearfix">
-            <a href="{{ path('show_produit', {'id': produit.id}) }}" class="txt-xl txt-black">
-                {{ produit.titre }}
-            </a><p>
-                - {{ produit.description }}
-                - {{ produit.couleur }}
-                - {{ produit.taille }}
-                - {{ produit.prix }} €</p>
-            
-            <img class="img-fluid box-black" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="200" 
-     height=auto>
+    <div class="col-4 mt-1">
+        <div class="box-black bg-white p-2 clearfix">
+            <a href="{{ path('show_produit', {'id': produit.id}) }}">
+                <p class="txt-xl txt-black">
+                    {{ produit.titre }}
+                </p>
+            </a>
+                <p class="txt-black">
+                    - {{ produit.description }}
+                    - {{ produit.couleur }}
+                    - {{ produit.taille }}
+                    - {{ produit.prix }} €
+                </p>
+            <a href="{{ path('show_produit', {'id': produit.id}) }}">
+                <img class="img-fluid box-black" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="200" height=auto>
+            </a>
             <hr>
             <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success float-right">
                 <i class="fas fa-shopping-cart mr-1"></i>
                 Ajouter
             </a>
         </div>
-
     </div>
 {% endfor %}
 </div>
