@@ -33,15 +33,15 @@ class PanierService{
     }
 
     public function subst(int $id) {
-     
+    
         $panier = $this->session->get('panier', []);
 
         if(!empty($panier[$id]) || $panier[$id] > 1 ){
             $panier[$id]--;
-        } else {
-           unset ($panier[$id]) ;
+            if ( $panier[$id] == 0 ){
+                unset($panier[$id]);
+            }
         }
-        
         $this->session->set('panier', $panier);
     }
 
@@ -70,16 +70,13 @@ class PanierService{
         return $panierWithData;
     }
 
+    
     public function getTotal() : float {
-
         $total = 0 ;
-        
         foreach( $this->getFullPanier() as $item){
-
-            $total += $item['produit']->getPrix() * $item['quantité'];
-
+            
+            $total += $item['produit']->getPrixpromo() * $item['quantité'];
         }
-        
         return $total;
     }
 }

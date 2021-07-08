@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Produits;
-use App\Form\SearchProduitsType;
+use App\Data\SearchData;
+use App\Form\SearchForm;
+
 use App\Repository\ProduitsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,23 +16,19 @@ class ProduitsController extends AbstractController
     /**
      * @Route("/produits", name="produits_index")
      */
-    public function index(Request $Request, ProduitsRepository $produitsRepository): Response
+    public function index(Request $Request, ProduitsRepository $Repository, Request $request): Response
     {   
-        $produits = $this->getDoctrine()->getRepository(Produits::class)->findAll();
-
-        $form = $this ->createForm(SearchProduitsType::class);
-        $form->handleRequest($Request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            // on recherche annonces correponsant aux mots cles
-            $produits = $produitsRepository->search($form->get('mots')->getData());
-            dump($produits);
-        }
-
-        return $this->render('produits/index.html.twig', [
+        $data = new SearchData();
+        $data->page = $request->get('page', 1);
+        $form = $this->createForm(SearchForm::class,$data);
+        $form->handleRequest($request);
+        
+        $produits =$Repository->findSearch($data);
+                return $this->render('produits/index.html.twig', [
             'produits' =>  $produits,
             'controller_name' => 'ProduitsController',
             'form'=> $form->createView()
         ]);
     }
+    
 }
