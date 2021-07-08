@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,10 +34,15 @@ class Comment
     private $CreatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Produits::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $produit;
-
+    private $produits;
+    
+    public function __construct()
+    {
+        $this->CreatedAt = new DateTimeImmutable();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -78,14 +84,14 @@ class Comment
         return $this;
     }
 
-    public function getProduit(): ?string
+    public function getProduits(): ?Produits
     {
-        return $this->produit;
+        return $this->produits;
     }
 
-    public function setProduit(string $produit): self
+    public function setProduits(?Produits $produits): self
     {
-        $this->produit = $produit;
+        $this->produits = $produits;
 
         return $this;
     }

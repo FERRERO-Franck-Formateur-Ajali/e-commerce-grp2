@@ -24,6 +24,16 @@
     </div>
 </div>
 <section class="comments">
+    {% for comment in produit.comments %}
+	    <div class="row">
+		    <div class="col-3 txt-white">
+			    {{comment.author}} <small class="txt-s">{{comment.CreatedAt | date('d/m/Y à H:i')}}</small>
+			</div>
+			<div class="txt-white col">
+			    {{comment.content | raw}}
+			</div>
+		</div>
+	{% endfor %}
     {{ form_start(commentForm) }}
     {{ form_widget(commentForm) }}
     <button type="submit" class="btn btn-success">Post</button>

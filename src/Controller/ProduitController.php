@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+date_default_timezone_set('Europe/Paris');
+
 use App\Entity\Produits;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,11 +30,10 @@ class ProduitController extends AbstractController
 
         $form->handleRequest($request);
 
-        $content = 'content';
 
         if($form->isSubmitted() && $form->isValid()){
-            $comment->setCreatedAt(new \DateTimeImmutable())
-                    ->setContent($content);
+            $comment->setProduits($produit)
+                    ->setAuthor('tutu');
 
             $manager->persist($comment);
             $manager->flush();
