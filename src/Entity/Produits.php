@@ -56,11 +56,12 @@ class Produits
     private $taille;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $actif;
 
     /**
+
      * @ORM\Column(type="integer")
      */
     private $promo;
@@ -73,6 +74,16 @@ class Produits
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="produits", orphanRemoval=true)
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->actif = true;
+
     }
 
     public function getId(): ?int
@@ -176,6 +187,7 @@ class Produits
         return $this;
     }
 
+
     public function getPromo(): ?int
     {
         return $this->promo;
@@ -200,10 +212,26 @@ class Produits
     {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setProduits($this);
+
         }
 
         return $this;
     }
+
 
     public function removeCategory(Category $category): self
     {
@@ -220,4 +248,17 @@ class Produits
         return null !== $this->getPromo() ? number_format(round(($this->getPrix() * (1 -($this->getPromo() / 100))), 2), '2', '.', '') : null;
 
     }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getProduits() === $this) {
+                $comment->setProduits(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
