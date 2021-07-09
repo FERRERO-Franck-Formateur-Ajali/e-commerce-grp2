@@ -61,7 +61,6 @@ class Produits
     private $actif;
 
     /**
-
      * @ORM\Column(type="integer")
      */
     private $promo;
@@ -70,11 +69,7 @@ class Produits
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="produits")
      */
     private $categories;
-
-    public function __construct()
-    {
-        $this->categories = new ArrayCollection();
-        
+  
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="produits", orphanRemoval=true)
      */
@@ -83,6 +78,7 @@ class Produits
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->categories = new ArrayCollection();
         $this->actif = true;
 
     }
@@ -213,7 +209,10 @@ class Produits
     {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
+        }
 
+        return $this;
+    }
     /**
      * @return Collection|Comment[]
      */
