@@ -74,7 +74,8 @@ class Produits
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-
+        
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="produits", orphanRemoval=true)
      */
     private $comments;
@@ -216,6 +217,7 @@ class Produits
     /**
      * @return Collection|Comment[]
      */
+    
     public function getComments(): Collection
     {
         return $this->comments;
