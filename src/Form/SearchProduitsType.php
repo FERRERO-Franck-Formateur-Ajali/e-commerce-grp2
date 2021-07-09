@@ -15,9 +15,10 @@ class SearchProduitsType extends AbstractType
         $builder
             ->add('mots', SearchType::class, [
                 'label' => false,
+                'action' => 'produits_index',
                 'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' =>  'Entrez un ou plusieurs termes'
+                    //'class' => 'form-control',
+                    'placeholder' => 'Entrez un terme'
                 ],
                 'required' => false,
             ])
@@ -33,6 +34,8 @@ class SearchProduitsType extends AbstractType
                     'class' => 'btn-primary',
                 ]
             ])
+            
+            
         ;
     }
 

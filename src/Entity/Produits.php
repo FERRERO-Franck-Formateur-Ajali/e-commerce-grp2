@@ -61,6 +61,20 @@ class Produits
     private $actif;
 
     /**
+
+     * @ORM\Column(type="integer")
+     */
+    private $promo;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="produits")
+     */
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="produits", orphanRemoval=true)
      */
     private $comments;
@@ -69,6 +83,7 @@ class Produits
     {
         $this->comments = new ArrayCollection();
         $this->actif = true;
+
     }
 
     public function getId(): ?int
@@ -172,6 +187,32 @@ class Produits
         return $this;
     }
 
+
+    public function getPromo(): ?int
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(int $promo): self
+    {
+        $this->promo = $promo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+
     /**
      * @return Collection|Comment[]
      */
@@ -185,9 +226,27 @@ class Produits
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
             $comment->setProduits($this);
+
         }
 
         return $this;
+    }
+
+
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of prixpromo
+     */ 
+    public function getPrixpromo() : float
+    {
+        return null !== $this->getPromo() ? number_format(round(($this->getPrix() * (1 -($this->getPromo() / 100))), 2), '2', '.', '') : null;
+
     }
 
     public function removeComment(Comment $comment): self
@@ -201,4 +260,5 @@ class Produits
 
         return $this;
     }
+
 }
