@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Entity\Client;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -16,11 +18,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"show_infos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"show_infos"})
      */
     private $email;
 
@@ -35,10 +39,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    private $confirm_password;
+
+    private $edit_email;
+
     /**
      * @ORM\OneToOne(targetEntity=Client::class, inversedBy="user", cascade={"persist", "remove"})
      */
     private $client;
+
+    // défini le role de l'utilisateur dans la base de données //
+    public function __construct()
+    {
+        $this->roles=['ROLE_USER'];
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +151,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of confirm_password
+     */ 
+    public function getConfirmPassword()
+    {
+        return $this->confirm_password;
+    }
+
+    /**
+     * Set the value of confirm_password
+     *
+     * @return  self
+     */ 
+    public function setConfirmPassword($confirm_password)
+    {
+        $this->confirm_password = $confirm_password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of edit_email
+     */ 
+    public function getEditEmail()
+    {
+        return $this->edit_email;
+    }
+
+    /**
+     * Set the value of edit_email
+     *
+     * @return  self
+     */ 
+    public function setEditEmail($edit_email)
+    {
+        $this->edit_email = $edit_email;
 
         return $this;
     }

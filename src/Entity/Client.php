@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -14,28 +15,39 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"show_infos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Groups({"show_infos"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Groups({"show_infos"})
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=14)
+     * @Groups({"show_infos"})
      */
     private $phone;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="client", cascade={"persist", "remove"})
+     * @Groups({"show_infos"})
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"show_infos"})
+     */
+    private $newsletter;
 
     public function getId(): ?int
     {
@@ -98,5 +110,22 @@ class Client
         $this->user = $user;
 
         return $this;
+    }
+
+    public function getNewsletter(): ?bool
+    {
+        return $this->newsletter;
+    }
+
+    public function setNewsletter(bool $newsletter): self
+    {
+        $this->newsletter = $newsletter;
+
+        return $this;
+    }
+    
+    public function __toString(): string
+    {
+        return $this->getUser()->getClient()->getNom().' '.$this->getUser()->getClient()->getPrenom().' '.$this->getUser()->getClient()->getPhone();
     }
 }
