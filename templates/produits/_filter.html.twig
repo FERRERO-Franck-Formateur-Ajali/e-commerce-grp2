@@ -1,17 +1,17 @@
 {{ form_start(form) }}
-{{ form_row(form.q) }}
+{{ form_row(form.q,  {'attr': {'class': 'box-black bg-white mt-2' }}) }}
 <h4>Catégories</h4>
-{{ form_row(form.category) }}
+{{ form_row(form.category,  {'attr': {'class': 'custom-checkbox' }}) }}
 <h4>Prix</h4>
 <div class="row">
     <div class="col-md-6">
-        {{ form_row(form.min) }}
+        {{ form_row(form.min,  {'attr': {'class': 'box-black bg-white' }}) }}
     </div>
     <div class="col-md-6">
-        {{ form_row(form.max) }}
+        {{ form_row(form.max,  {'attr': {'class': 'box-black bg-white' }}) }}
     </div>
 </div>
 <h4>Promotions</h4>
 {{ form_row(form.promo) }}
-<button type="submit" class="btn btn-primary w-100">Filtrer</button>
+<button type="submit" class="btn bg-primary w-100 box-black txt-white">Filtrer</button>
 {{ form_end(form) }}

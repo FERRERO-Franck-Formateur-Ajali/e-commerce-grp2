@@ -10,22 +10,17 @@
 
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
+    <body class="bg-white">
         <nav class="container-fluid navbar navbar-expand-lg txt-white bg-bg">
             <div class="mr-auto col-1">
                 <a href="/" class="navbar-brand txt-xl txt-white mx-3">Oxygen Live</a>
             </div>
-            <form class="col-8 mr-4">
-                <div class="input-group-prepend">
-                    <button class="fas fa-search input-group-text txt-black txt-l px-2 bg-white blr-1 box-black mr-1"></button>
-                    <input type="text" class="form-control bg-white box-black txt-black" id="searchBar" placeholder="Search...">
-                </div>
-            </form>
-            <a href="#" class="nav-link far fa-heart txt-white mr-1 txt-l"></a>
+            <a href="/produits" class="nav-link fas fa-search txt-white mx-1 txt-l"></button>
+            <a href="#" class="nav-link far fa-heart txt-white mx-1 txt-l"></a>
             <a href="/panier" class="nav-link fas fa-shopping-cart txt-white mx-1 txt-l"></a>
             <a href="/account" class="nav-link far fa-user-circle txt-white mx-1 txt-l"></a>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white blb-1">
+        <!--<nav class="navbar navbar-expand-lg navbar-light bg-white blb-1">
             <a class="navbar-brand ml-5 txt-black">Sections</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
                 <span class="navbar-toggler-icon"></span>
@@ -74,7 +69,7 @@
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>-->
         <div class="container">
         {% block body %}{% endblock %}
         </div>
