@@ -25,9 +25,9 @@
 </div>
 <section class="comments">
     {% for comment in produit.comments %}
-	    <div class="row">
+	    <div class="row mb-5">
 		    <div class="col-3 txt-black">
-			    {{comment.author}} <small class="txt-s">{{comment.CreatedAt | date('d/m/Y à H:i')}}</small>
+			    {{comment.author}} <small class="txt-s">le {{comment.CreatedAt | date('d/m/Y à H:i')}}</small>
 			</div>
 			<div class="txt-black col">
 			    {{comment.content | raw}}

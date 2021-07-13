@@ -1,9 +1,9 @@
 <div class="card">
-    <div class="card-body box-black bg-white">
+    <div class="card-body bg-bg">
         <a href="{{ path('show_produit', {'id': produit.id}) }}"><img class="card-img-top box-black mb-2" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="100" height=auto>
         </a>
         <a href="{{ path('show_produit', {'id': produit.id}) }}">
-            <h5 class="card_title txt-black" >{{ produit.titre }}</h5>
+            <h5 class="card_title txt-white" >{{ produit.titre }}</h5>
         </a>
         <div class="card_title text-primary" style="font-weight: bold;font-size: 1.5rem;" >
             
@@ -14,15 +14,16 @@
             {{ produit.prix | number_format(0, ',', ' ')}} €
             {% endif %}
         </div>
-        <p class="txt-black">{{ produit.description }}</p>
-    <div>
+        <p class="txt-white">{{ produit.description }}</p>
+    <div class="pt-3 wlt-1">
         {% for c in produit.categories %}
-            <em class="text-muted text-primary text-italic"> # {{ c.name }} </em>
+            <em class="text-muted text-primary text-italic col"> #{{ c.name }} </em>
         {% endfor %}
-        <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success box-white float-right">
-        <i class="fas fa-shopping-cart mr-1">
-        </i>
-        Ajouter
-        </a></div>
+            <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success box-white float-right">
+                <i class="fas fa-shopping-cart mr-1">
+                </i>
+                Ajouter
+            </a>
+        </div>
     </div>
 </div>

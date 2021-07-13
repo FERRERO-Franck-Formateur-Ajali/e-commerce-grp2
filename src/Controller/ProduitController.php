@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CommentType;
 use App\Entity\Comment;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Client;
+use App\Entity\User;
 
 class ProduitController extends AbstractController
 {
@@ -30,10 +32,13 @@ class ProduitController extends AbstractController
 
         $form->handleRequest($request);
 
+        $user = $this->getUser()->getClient();
+
+        $name = implode([$user->getNom(),' ',$user->getPrenom()]);
 
         if($form->isSubmitted() && $form->isValid()){
             $comment->setProduits($produit)
-                    ->setAuthor('tutu');
+                    ->setAuthor($name);
 
             $manager->persist($comment);
             $manager->flush();
@@ -45,6 +50,7 @@ class ProduitController extends AbstractController
             'produit' => $produit,
             'commentForm' => $form->createView(),
             'controller_name' => 'ProduitController',
+            'user' => $user,
         ]);
     }
 
