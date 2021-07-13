@@ -1,8 +1,37 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_facture.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}Edition facture{% endblock %}
 
 {% block body %}
+    <table class="table mt-3">
+        <thead class="txt-white">
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ user.client.nom }}</td>
+                <td>{{ user.client.prenom }}</td>
+                <td>{{ user.client.phone }}</td>
+                <td>{{ user.email }}</td>
+                
+            </tr>
+        </tbody>
+        <tfoot class="txt-white">
+            <tr>
+                <td colspan="3" class="text-right"></td>
+                <td></td>
+                <td>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
 {% if items | length > 0 %}
     <table class="table mt-3">
         <thead class="txt-white">
@@ -17,7 +46,6 @@
         </thead>
         <tbody>
             {% for item in items %}
-
                  <tr>
                     <td><a href="{{ path('show_produit', {'id': item.produit.id}) }}">
                     <img class="img-fluid rounded" src="{{ item.produit.image }}" alt="Image de {{ item.produit.titre }}" width="50" height=auto>
@@ -35,34 +63,19 @@
 
                     <td>{{ item.quantité }}</td>
                     <td>{{ item.produit.getPrixpromo * item.quantité  | number_format(0, ',', ' ')}} €</td>
-                    <td>  <a href="{{ path('panier_add', {'id': item.produit.id}) }}" class="btn btn-success float-right">
-                        <i class="fas fa-shopping-cart mr-1"></i>
-                        +1
-                        </a>
-                        <a href="{{ path('panier_subst', {'id': item.produit.id}) }}" class="btn btn-success float-right">
-                        <i class="fas fa-shopping-cart mr-1"></i>
-                        -1
-                        </a>
-                        <a href="{{ path('panier_remove',{'id': item.produit.id})}}" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                       
-                    </td>
+                    <td></td>
                 </tr>
             {% endfor %}
         </tbody>
         <tfoot class="txt-white">
             <tr>
+                <td><a href="{{ path('panier_facture_download')}}" class="btn btn-danger btn-sm">Valider votre commande</a></td>
                 <td colspan="3" class="text-right">Total : </td>
-                <td>{{ total  | number_format(0, ',', ' ')}}</td>
-                <td>
-                    <a href="{{ path('panier_facture')}}" class="btn btn-danger btn-sm">panier_facture
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                    </a>
-                </td>
+                <td>{{ total  | number_format(0, ',', ' ')}}</td> 
             </tr>
         </tfoot>
     </table>
+    
 {% else %}
 <p>Désolé, Panier vide !!</p> 
 {% endif %}

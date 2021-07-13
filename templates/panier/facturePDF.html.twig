@@ -1,0 +1,71 @@
+{% extends 'base_pdf.html.twig' %}
+
+{% block body %}
+<table class="table mt-3">
+        <thead class="txt-white">
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ app.user.client.nom }}</td>
+                <td>{{ app.user.client.prenom }}</td>
+                <td>{{ app.user.client.phone }}</td>
+                <td>{{ app.user.email }}</td>
+            </tr>
+        </tbody>
+        <tfoot class="txt-white">
+            <tr>
+                <td colspan="3" class="text-right"></td>
+                <td></td>
+                <td>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <table class="table mt-3">
+    <thead class="txt-white">
+        <tr>
+            <th>Produit</th>
+            <th>Taille</th>
+            <th>Couleur</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+            <tr>
+                <td><a href="{{ path('show_produit', {'id': item.produit.id}) }}">
+            {{ item.produit.titre }} <a/> </td>
+        <td>{% if item.produit.taille %} {{ item.produit.taille }} {% endif %}</td>
+        <td>{% if item.produit.couleur %} {{ item.produit.couleur }}{% endif %}</td>
+                <td>
+                    {% if item.produit.promo %}
+                        <del>{{ item.produit.prix | number_format(0, ',', ' ')}} €</del> - 
+                        {{ item.produit.promo }} % = {{ item.produit.getPrixpromo | number_format(0, ',', ' ')}} €
+                    {% else %}
+                        {{ item.produit.prix | number_format(0, ',', ' ')}} €
+                    {% endif %}
+                </td>
+                <td>{{ item.quantité }}</td>
+                <td>{{ item.produit.getPrixpromo * item.quantité  | number_format(0, ',', ' ')}} €</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot class="txt-white">
+        <tr>
+            <td></td>
+            <td colspan="3" class="text-right">Total : </td>
+            <td>{{ total | number_format(0, ',', ' ')}}</td> 
+        </tr>
+    </tfoot>
+</table>
+{% endblock  %}

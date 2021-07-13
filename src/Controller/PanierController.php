@@ -1,12 +1,20 @@
 <?php
 namespace App\Controller;
 
-use App\Service\Panier\PanierService;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
+use App\Controller\AccountController;
+use App\Service\Panier\PanierService;
+use App\Controller\SecurityController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PanierController extends AbstractController
 {   
@@ -22,6 +30,67 @@ class PanierController extends AbstractController
             'items' =>$panierService->getFullPanier(),
             'total' => $panierService->getTotal()
         ]);    
+    }
+    /**
+     * @Route("/panier/facture", name="panier_facture")
+     */
+    public function facture(PanierService $panierService){
+
+        $user = $this->getUser();
+
+        //dd($user);
+        return $this->render('panier/facture.html.twig', [
+            'items' =>$panierService->getFullPanier(),
+            'total' => $panierService->getTotal(),
+            'user' => $user
+        ]);    
+    }
+    /**
+     * @Route("/panier/facture/download", name="panier_facture_download")
+     */
+    public function facture_download(PanierService $panierService){
+
+        // options du pdf
+        $pdfOptions = new Options();
+
+        // police
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        //istance de dompdf
+        $dompdf = new Dompdf($pdfOptions);
+        $items=$panierService->getFullPanier();
+        $total=$panierService->getTotal();
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE,
+                'items' =>$items,
+                'total' =>$total,                           
+            ]
+        ]);
+        $dompdf->setHttpContext($context);
+
+        // on genere le HTML
+        $html = $this-> renderView('panier/facturePDF.html.twig',[
+            'items'=>$items,
+            'total' =>$total 
+        ]);
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4','landscape');
+        $dompdf->render();
+
+        // on genere un nom de fichier
+        $fichier='Facture'.$this->getUser()->getId().'.pdf';
+
+        //envoi au navigateur
+        $dompdf->stream($fichier, [
+            'attachment' => true
+        ]);
+        return new Response();
+         
     }
 
     /**
@@ -46,4 +115,5 @@ class PanierController extends AbstractController
         $panierService->remove($id);
         return $this->redirectToRoute("panier_index");
     }
+    
 }
