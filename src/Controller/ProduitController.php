@@ -12,8 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CommentType;
 use App\Entity\Comment;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Client;
-use App\Entity\User;
 
 class ProduitController extends AbstractController
 {

@@ -3,10 +3,10 @@
 {% block title %}ProduitController!{% endblock %}
 
 {% block body %}
-<h1 href="{{ path('show_produit', {'id': produit.id}) }}" class="mt-5 txt-xxl txt-black">
+<h1 href="{{ path('show_produit', {'id': produit.id}) }}" class="mt-5 txt-xxl txt-white">
     {{ produit.titre }}
 </h1>
-<div class="d-flex txt-black p-2 my-5 ">
+<div class="d-flex txt-white p-2 my-5 ">
     <div class="col-4">
         <img class="img-fluid box-black my-3" src="{{ produit.image }}" alt="Image de {{ produit.titre }}" width="400" height=auto>
     </div>
@@ -23,13 +23,13 @@
         </a>
     </div>
 </div>
-<section class="comments">
+<section class="comments container">
     {% for comment in produit.comments %}
-	    <div class="row mb-5">
-		    <div class="col-3 txt-black">
+	    <div class="row mb-4 wlt-1">
+		    <div class="col-3 txt-white">
 			    {{comment.author}} <small class="txt-s">le {{comment.CreatedAt | date('d/m/Y à H:i')}}</small>
 			</div>
-			<div class="txt-black col">
+			<div class="txt-white col-9">
 			    {{comment.content | raw}}
 			</div>
 		</div>
