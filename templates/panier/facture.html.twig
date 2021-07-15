@@ -69,13 +69,41 @@
         </tbody>
         <tfoot class="txt-white">
             <tr>
-                <td><a href="{{ path('panier_facture_download')}}" class="btn btn-danger btn-sm">Valider votre commande</a></td>
-                <td colspan="3" class="text-right">Total : </td>
+                <td></td>
+                
+            <td></td><td colspan="3" class="text-right">Total : </td>
                 <td>{{ total  | number_format(0, ',', ' ')}}</td> 
             </tr>
         </tfoot>
     </table>
-    
+    Point de retrait :
+    <table class="table mt-3">
+    <thead class="txt-white">
+            <tr>
+                <th>Tournée </th>
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ concert.tournee }}</td>
+            <td>{{ concert.ville }}</td>
+            <td>{{ concert.adresse }}</td>
+            <td>{{ concert.date | date('d/m/Y') }}</td>
+        </tr>
+    <tfoot class="txt-white">
+    <tr>
+        <td></td>
+        <td></td>
+        <td colspan="3" class="text-right"></td>
+        <td><a href="{{ path('panier_facture_download')}}" class="btn btn-danger btn-sm">Valider votre commande</a>
+        </td>
+    </tr>
+</tfoot>
+    </tbody>
+</table>
 {% else %}
 <p>Désolé, Panier vide !!</p> 
 {% endif %}

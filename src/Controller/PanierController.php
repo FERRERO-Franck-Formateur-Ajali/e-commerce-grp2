@@ -4,11 +4,13 @@ namespace App\Controller;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Entity\User;
+use App\Entity\Concerts;
 use App\Repository\UserRepository;
-
 use App\Controller\AccountController;
 use App\Service\Panier\PanierService;
 use App\Controller\SecurityController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,26 +27,79 @@ class PanierController extends AbstractController
     public function index(PanierService $panierService){
 
         //setcookie('panier',json_encode($panierService->getFullPanier()),time()+60*60*24*30);
-
+        $concerts = $this->getdoctrine()->getRepository(Concerts::class)->findall();
+        //dd($concerts);
         return $this->render('panier/index.html.twig', [
+            'concerts'=>$concerts,
             'items' =>$panierService->getFullPanier(),
             'total' => $panierService->getTotal()
         ]);    
     }
+
     /**
      * @Route("/panier/facture", name="panier_facture")
      */
-    public function facture(PanierService $panierService){
-
+    public function facture(PanierService $panierService,Request $request,EntityManagerInterface $manager){
+        
         $user = $this->getUser();
+        $point = $request->get('point', 'none');// correspond à $_POST['point ']
+        $concert = $this->getdoctrine()
+            ->getRepository(Concerts::class)
+            ->findOneBy(['id' => $point]);
+         
+        //dd($concert);
+        //dd($point);
 
-        //dd($user);
-        return $this->render('panier/facture.html.twig', [
-            'items' =>$panierService->getFullPanier(),
-            'total' => $panierService->getTotal(),
-            'user' => $user
-        ]);    
+        // options du pdf
+        $pdfOptions = new Options();
+
+        // police
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        //istance de dompdf
+        $dompdf = new Dompdf($pdfOptions);
+        $items=$panierService->getFullPanier();
+        $total=$panierService->getTotal();
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE,
+                'items' =>$items,
+                'total' =>$total,
+                'concert' =>$concert                           
+            ]
+        ]);
+        $dompdf->setHttpContext($context);
+
+        // on genere le HTML
+        $html = $this-> renderView('panier/facturePDF.html.twig',[
+            'items'=>$items,
+            'total' =>$total,
+            'concert' =>$concert
+        ]);
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4','landscape');
+        $dompdf->render();
+
+        // on genere un nom de fichier
+        $fichier='Facture'.$this->getUser()->getId().'.pdf';
+
+        //envoi au navigateur
+        $dompdf->stream($fichier, [
+            'attachment' => true
+        //inserion donnees
+        //$commande->setProduits($produit)
+        //            ->setAuthor('tutu');
+        //    $manager->persist($commande);
+        //    $manager->flush();
+        ]);
+        return new Response();
+         
     }
+
     /**
      * @Route("/panier/facture/download", name="panier_facture_download")
      */
