@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(CategoryRepository $categoryRepository, ProduitsRepository $produitRepository,Request $request): Response
+    public function index(CategoryRepository $categoryRepository, ProduitsRepository $produitRepository): Response
     {   
         $selectpromo = $produitRepository->findByPromo();
 

@@ -155,6 +155,15 @@ class PanierController extends AbstractController
         $panierService->add($id);
         return $this->redirectToRoute("panier_index");
     }
+
+    /**
+     * @Route("/panier/add2/{id}", name="panier_add2")
+     */
+    public function add2(int $id, PanierService $panierService){
+        $panierService->add($id);
+        return $this->redirectToRoute("produits_index");
+    }
+
     /**
      * @Route("/panier/subst/{id}", name="panier_subst")
      */
