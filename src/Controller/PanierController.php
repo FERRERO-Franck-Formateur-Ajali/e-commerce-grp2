@@ -46,7 +46,6 @@ class PanierController extends AbstractController
         $concert = $this->getdoctrine()
             ->getRepository(Concerts::class)
             ->findOneBy(['id' => $point]);
-         
         //dd($concert);
         //dd($point);
 
@@ -91,8 +90,9 @@ class PanierController extends AbstractController
         $dompdf->stream($fichier, [
             'attachment' => true
         //inserion donnees
-        //$commande->setProduits($produit)
-        //            ->setAuthor('tutu');
+        //$commande->setPanier(json_encode($panierService->getFullPanier()))
+        //         ->setTotal($total)
+        //         ->setPointR($concert)   
         //    $manager->persist($commande);
         //    $manager->flush();
         ]);
