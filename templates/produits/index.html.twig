@@ -3,11 +3,9 @@
 {% block title %}Hello ProduitsController!{% endblock %}
 
 {% block body %}
-     <div class ="container"><div class="bg-light p-3">
-        <h1>Les produits</h1>
-    </div>
+     
    
-        <div class="row">
+        <div class="row txt-white">
             <div class="col-md-3 " >
                 {{ knp_pagination_sortable(produits, 'Prix','p.prix') }}
                 {{ knp_pagination_sortable(produits, 'Promo','p.promo') }}
