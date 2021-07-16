@@ -51,7 +51,7 @@ class Client
      */
     private $newsletter;
 
-  
+    /**
      * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="client", orphanRemoval=true)
      */
     private $adresses;
@@ -59,16 +59,14 @@ class Client
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
-
+        $this->Fav = new ArrayCollection();
+    }
+    /**
      * @ORM\OneToMany(targetEntity=Produits::class, mappedBy="client")
      */
+    
     private $Fav;
 
-    public function __construct()
-    {
-        $this->Fav = new ArrayCollection();
-
-    }
 
     public function getId(): ?int
     {
@@ -164,9 +162,12 @@ class Client
         if (!$this->adresses->contains($adress)) {
             $this->adresses[] = $adress;
             $adress->setClient($this);
-
+        }
+    }
+    /**
      * @return Collection|Produits[]
      */
+
     public function getFav(): Collection
     {
         return $this->Fav;
@@ -190,7 +191,9 @@ class Client
             // set the owning side to null (unless already changed)
             if ($adress->getClient() === $this) {
                 $adress->setClient(null);
-
+            }
+        }
+    }
     public function removeFav(Produits $fav): self
     {
         if ($this->Fav->removeElement($fav)) {

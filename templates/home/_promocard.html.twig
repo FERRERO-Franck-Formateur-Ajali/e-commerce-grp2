@@ -14,14 +14,13 @@
             {{ promo.prix | number_format(0, ',', ' ')}} €
             {% endif %}
         </div>
-        <p class="txt-black">{{ promo.description }}</p>
     <div class="pt-3 blt-1 d-flex align-items-center ">
         <div class="col">
             {% for c in promo.categories %}
                 <em class="text-muted text-italic float-left"> #{{ c.name }} </em><br>
             {% endfor %}
         </div>
-            <a href="{{ path('panier_add', {'id': promo.id}) }}" class="col btn btn-success box-black float-right">
+            <a href="{{ path('panier_add2', {'id': promo.id}) }}" class="col btn btn-success box-black float-right">
                 <i class="fas fa-shopping-cart mr-1">
                 </i>
                 Ajouter
