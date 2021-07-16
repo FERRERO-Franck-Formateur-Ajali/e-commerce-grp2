@@ -5,76 +5,24 @@
 
         <title>{% block title %}{% endblock %}</title>        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
+    <body class="bg-bg">
         <nav class="container-fluid navbar navbar-expand-lg txt-white bg-bg">
+            <a href="/" class="ml-4 my-1"><img src="{{ asset('images/logo.png') }}" alt="logo" width="50"></a>
             <div class="mr-auto col-1">
                 <a href="/" class="navbar-brand txt-xl txt-white mx-3">Oxygen Live</a>
             </div>
-            <form class="col-8 mr-4">
-                <div class="input-group-prepend">
-                    <button class="fas fa-search input-group-text txt-black txt-l px-2 bg-white blr-1 box-black mr-1"></button>
-                    <input type="text" class="form-control bg-white box-black txt-black" id="searchBar" placeholder="Search...">
-                </div>
-            </form>
-            <a href="#" class="nav-link far fa-heart txt-white mr-1 txt-l"></a>
+            <a href="/produits" class="nav-link fas fa-search txt-white mx-1 txt-l"></button>
+            {# <a href="#" class="nav-link far fa-heart txt-white mx-1 txt-l"></a> #}
             <a href="/panier" class="nav-link fas fa-shopping-cart txt-white mx-1 txt-l"></a>
             <a href="/account" class="nav-link far fa-user-circle txt-white mx-1 txt-l"></a>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white blb-1">
-            <a class="navbar-brand ml-5 txt-black">Sections</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="main_nav">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown has-megamenu ml-4 mr-5">
-                        <a class="nav-link txt-black" href="#" data-toggle="dropdown">Mega menu A</a>
-                        <div class="dropdown-menu megamenu box bg-bg txt-white">
-                            <p class="d-flex">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Eligendi illo voluptate fuga adipisci, repellat sit aliquam id suscipit deserunt
-                            beatae nostrum ullam dolorum repudiandae recusandae alias iusto amet placeat exercitationem?</p>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown has-megamenu ml-4 mr-5">
-                        <a class="nav-link txt-black" href="#" data-toggle="dropdown">Mega menu B</a>
-                        <div class="dropdown-menu megamenu box bg-bg txt-white">
-                            <p class="d-flex">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem, 
-                            cum. Nostrum illum amet doloribus iure voluptatum mollitia cupiditate iste consectetur 
-                            aperiam reiciendis? Incidunt ea ad cumque quae iure fugit ducimus?</p>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown has-megamenu ml-4 mr-5">
-                        <a class="nav-link txt-black" href="#" data-toggle="dropdown">Mega menu C</a>
-                        <div class="dropdown-menu megamenu box bg-bg txt-white">
-                            <p class="d-flex">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, 
-                            pariatur, doloremque, minima error sit nisi dolore sed cumque molestiae esse est? 
-                            Est assumenda quis enim minima beatae optio maxime blanditiis.</p>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown has-megamenu ml-4 mr-5">
-                        <a class="nav-link txt-black" href="#" data-toggle="dropdown">Mega menu D</a>
-                        <div class="dropdown-menu megamenu box bg-bg txt-white">
-                            <p class="d-flex">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                            Vitae consequuntur odit rerum. Ducimus rem dolorem eos culpa a corporis voluptatibus 
-                            fugit, quo temporibus veritatis. Fugit placeat velit tempora consequuntur laborum!</p>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown has-megamenu ml-4 mr-5">
-                        <a class="nav-link txt-black" href="#" data-toggle="dropdown">Mega menu E</a>
-                        <div class="dropdown-menu megamenu box bg-bg txt-white">
-                            <p class="d-flex">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Laboriosam maiores, praesentium doloremque quod similique deserunt magnam animi vel 
-                            esse voluptate quia harum, non laudantium sunt eaque nam repellat corporis modi.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="container">
+        <nav class="bg-white"><br></nav>
+        <div class="container mt-4">
         {% block body %}{% endblock %}
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

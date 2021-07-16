@@ -1,33 +1,14 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Home | Oxygen Live{% endblock %}
 
 {% block body %}
-<div class="card-deck mt-5">
-  <div class="card bg-white box-black pt-3 text-center">
-    <i class="far fa-times-circle txt-xl txt-black"></i>
-    <div class="card-body txt-black">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-        content. This content is a little bit longer.</p>
-    </div>
-  </div>
-  <div class="card bg-white box-black pt-3 text-center">
-    <i class="far fa-times-circle txt-xl txt-black"></i>
-    <div class="card-body txt-black">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-  </div>
-  <div class="card bg-white box-black pt-3 text-center">
-    <i class="far fa-times-circle txt-xl txt-black"></i>
-    <div class="card-body txt-black">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-  </div>
-
+<h3 class="txt-white txt-xxl">Promo !</h3>
+<div class="d-flex txt-white">
+{% for promo in selectpromo %}
+<div class="my-3 col-md-4">
+{% include 'home/_promocard.html.twig' with {promo} only %}
+</div>
+{% endfor %}
 </div>
 {% endblock %}
