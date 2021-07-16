@@ -16,7 +16,12 @@
                 {{ produit.description }}<br><br>
                 {{ produit.couleur }}<br><br>
                 {{ produit.taille }}<br><br>
-                {{ produit.prix }} €</p>
+                {% if produit.promo %}
+                <div class="text text-warning">PROMO ! {{ produit.promo }} %</div>
+                <del>{{ produit.prix | number_format(0, ',', ' ')}} €</del> - {{ produit.prixpromo | number_format(0, ',', ' ')}} €
+                {% else %}
+                {{ produit.prix | number_format(0, ',', ' ')}} €
+                {% endif %}</p>
             <hr>
             <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-success float-right">
                 <i class="fas fa-shopping-cart mr-1"></i>

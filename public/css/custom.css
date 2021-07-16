@@ -105,7 +105,5 @@ border-bottom: 1px solid #fff !important;
 }
 .sidebar-sticky
 {
-    max-width: 500px !important;
-    min-width: 500px !important;
-    width: 500px !important;
+    width: 240px !important;
 }
