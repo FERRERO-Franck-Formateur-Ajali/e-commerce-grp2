@@ -103,7 +103,9 @@ border-bottom: 1px solid #fff !important;
     border: 1px solid #202020 !important;
     border-radius: 4px !important;
 }
-.sidebar
+.sidebar-sticky
 {
+    max-width: 500px !important;
+    min-width: 500px !important;
     width: 500px !important;
 }
