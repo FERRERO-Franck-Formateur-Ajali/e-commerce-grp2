@@ -24,11 +24,11 @@ class ProduitsController extends AbstractController
         $form->handleRequest($request);
         
         $produits =$Repository->findSearch($data);
-                return $this->render('produits/index.html.twig', [
+            return $this->render('produits/index.html.twig', [
             'produits' =>  $produits,
             'controller_name' => 'ProduitsController',
             'form'=> $form->createView()
         ]);
     }
-    
+
 }

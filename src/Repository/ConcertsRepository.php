@@ -2,26 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Category;
+use App\Entity\Concerts;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Category|null find($id, $lockMode = null, $lockVersion = null)
- * @method Category|null findOneBy(array $criteria, array $orderBy = null)
- * @method Category[]    findAll()
- * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Concerts|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Concerts|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Concerts[]    findAll()
+ * @method Concerts[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoryRepository extends ServiceEntityRepository
+class ConcertsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Category::class);
+        parent::__construct($registry, Concerts::class);
     }
 
-  
     // /**
-    //  * @return Category[] Returns an array of Category objects
+    //  * @return Concerts[] Returns an array of Concerts objects
     //  */
     /*
     public function findByExampleField($value)
@@ -38,7 +37,7 @@ class CategoryRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Category
+    public function findOneBySomeField($value): ?Concerts
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

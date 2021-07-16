@@ -51,5 +51,4 @@ class ProduitController extends AbstractController
             'user' => $user,
         ]);
     }
-
 }
