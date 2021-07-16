@@ -74,7 +74,6 @@ class PanierService{
     public function getTotal() : float {
         $total = 0 ;
         foreach( $this->getFullPanier() as $item){
-            
             $total += $item['produit']->getPrixpromo() * $item['quantité'];
         }
         return $total;

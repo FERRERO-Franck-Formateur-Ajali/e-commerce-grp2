@@ -75,6 +75,11 @@ class Produits
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="Fav")
+     */
+    private $client;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -258,6 +263,18 @@ class Produits
                 $comment->setProduits(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }

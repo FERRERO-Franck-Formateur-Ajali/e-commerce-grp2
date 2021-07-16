@@ -9,6 +9,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Category;
 
 /**
  * @method Produits|null find($id, $lockMode = null, $lockVersion = null)
@@ -92,7 +93,15 @@ class ProduitsRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-
+    public function findByPromo()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.promo > :val')
+            ->setParameter('val',0)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     // /**
     //  * @return Produits[] Returns an array of Produits objects

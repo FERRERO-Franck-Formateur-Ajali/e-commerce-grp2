@@ -30,10 +30,13 @@ class ProduitController extends AbstractController
 
         $form->handleRequest($request);
 
+        $user = $this->getUser()->getClient();
+
+        $name = implode([$user->getNom(),' ',$user->getPrenom()]);
 
         if($form->isSubmitted() && $form->isValid()){
             $comment->setProduits($produit)
-                    ->setAuthor('tutu');
+                    ->setAuthor($name);
 
             $manager->persist($comment);
             $manager->flush();
@@ -45,7 +48,7 @@ class ProduitController extends AbstractController
             'produit' => $produit,
             'commentForm' => $form->createView(),
             'controller_name' => 'ProduitController',
+            'user' => $user,
         ]);
     }
-
 }

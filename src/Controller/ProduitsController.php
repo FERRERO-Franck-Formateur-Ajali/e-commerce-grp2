@@ -16,7 +16,7 @@ class ProduitsController extends AbstractController
     /**
      * @Route("/produits", name="produits_index")
      */
-    public function index( ProduitsRepository $Repository, Request $request): Response
+    public function index(ProduitsRepository $Repository, Request $request): Response
     {   
         $data = new SearchData();
         $data->page = $request->get('page', 1);
@@ -30,5 +30,5 @@ class ProduitsController extends AbstractController
             'form'=> $form->createView()
         ]);
     }
-    
+
 }
