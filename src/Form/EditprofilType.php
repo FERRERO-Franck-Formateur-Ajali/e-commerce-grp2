@@ -27,7 +27,7 @@ class EditprofilType extends AbstractType
                     'placeholder' => 'Laissez ce champ vide, si vous ne voulez pas modifier votre e-mail...'
                 ]
             ])
-            ->add('confirm_password', RepeatedType::class,[
+            /**->add('confirm_password', RepeatedType::class,[
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe ne correspond pas.',
                 'options' => ['attr' => ['class' => 'password-field']],
@@ -39,7 +39,7 @@ class EditprofilType extends AbstractType
                     'placeholder' => 'Laissez ce champ vide, si vous ne voulez pas modifier votre mot de passe...',
                     'class' => '',
                 ]
-            ])
+            ]) */
             ->add('client', ClientType::class,[
                 'row_attr' => [
                     'id' => 'register-client'                ]
