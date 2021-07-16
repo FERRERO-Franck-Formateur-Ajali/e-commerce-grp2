@@ -15,12 +15,13 @@
                 <th>Total</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="txt-white">
             {% for item in items %}
                  <tr>
                     <td><a href="{{ path('show_produit', {'id': item.produit.id}) }}">
-                    <img class="img-fluid rounded" src="{{ item.produit.image }}" alt="Image de {{ item.produit.titre }}" width="50" height=auto>
-                {{ item.produit.titre }} <a/> </td>
+                    <img class="box-black img-fluid" src="{{ item.produit.image }}" alt="Image de {{ item.produit.titre }}" width="50" height=auto>
+                <a/>
+                <a href="{{ path('show_produit', {'id': item.produit.id}) }}" class="txt-white ml-1">{{ item.produit.titre }}</a></td>
             <td>{% if item.produit.taille %} {{ item.produit.taille }} {% endif %}</td>
             <td>{% if item.produit.couleur %} {{ item.produit.couleur }}{% endif %}</td>
                     <td>

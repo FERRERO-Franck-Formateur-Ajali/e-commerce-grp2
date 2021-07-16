@@ -5,7 +5,7 @@
     text-decoration: none;
 }
 .txt-white, .txt-white:hover {
-    color: #eceff1 !important;
+    color: #fff !important;
     text-shadow: 0 0 1px #BBBBBB;
     text-decoration: none;
 }
@@ -16,9 +16,9 @@
     background: #202020 !important;
 }
 .bg-white {
-    background: #eceff1 !important;
+    background: #fff !important;
     box-shadow: inset 0 0 2px #353535;
-};
+}
 .bll-1 {
     border-left: 1px solid #202020 !important;
 }
@@ -32,28 +32,24 @@ border-top: 1px solid #202020 !important;
 border-bottom: 1px solid #202020 !important;
 }
 .wll-1 {
-    border-left: 1px solid #eceff1 !important;
+    border-left: 1px solid #fff !important;
 }
 .wlr-1 {
-border-right: 1px solid #eceff1 !important;
+border-right: 1px solid #fff !important;
 }
 .wlt-1 {
-border-top: 1px solid #eceff1 !important;
+border-top: 1px solid #fff !important;
 }
 .wlb-1 {
-border-bottom: 1px solid #eceff1 !important;
+border-bottom: 1px solid #fff !important;
 }
 .box-black {
     border: 1px solid #202020 !important;
-    border-radius: 16px !important;
+    border-radius: 4px !important;
 }
 .box-white {
-    border: 1px solid #eceff1 !important;
-    border-radius: 16px !important;
-}
-.box {
-    border: 1px solid #202020 !important;
-    border-radius: 2px !important;
+    border: 1px solid #fff !important;
+    border-radius: 6px !important;
 }
 .bg-bg,body {
     background: linear-gradient(to top, #101010, #353535) !important;
@@ -97,4 +93,17 @@ border-bottom: 1px solid #eceff1 !important;
         max-height: 90vh;
         padding-top:10px;
     }
+}
+.card-body
+{
+    height: 550px !important;
+    min-width: 285px !important;
+}
+.card {
+    border: 1px solid #202020 !important;
+    border-radius: 4px !important;
+}
+.sidebar
+{
+    max-width: 235px !important;
 }
