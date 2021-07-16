@@ -267,6 +267,12 @@ class Produits
         return $this;
     }
 
+
+    public function __toString(): string
+    {
+        return $this->titre;
+    }
+
     public function getClient(): ?Client
     {
         return $this->client;

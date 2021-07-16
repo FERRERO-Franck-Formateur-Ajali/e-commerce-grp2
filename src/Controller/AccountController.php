@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Adresse;
+use App\Form\AdresseType;
 use App\Form\EditprofilType;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -10,10 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\SerializerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -38,6 +40,7 @@ class AccountController extends AbstractController
         
         return $this->render('account/index.html.twig', [
             'User' => $user,
+            'adresses' => $this->getUser()->getClient()->getAdresses()->toArray(),
         ]);
     }
     
@@ -85,6 +88,7 @@ class AccountController extends AbstractController
             // vérifier si les deux mot de passes sont identiques //
             if ($request->request->get('pass') == $request->request->get('pass2')){
                 $user->setPassword($encoder->encodePassword($user, $request->request->get('pass')));
+                $em->persist($user);
                 $em->flush();
                 $this->addFlash('message', 'votre mot de passe à été mis à jour avec succès');
 
@@ -97,5 +101,65 @@ class AccountController extends AbstractController
         return $this->render('account/editpass.html.twig', [
             /*'form' => $form->createView(),*/
         ]);
+    }
+
+
+
+    /**
+     * @Route("mon-compte/adresse/new", name="adresse_new", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $adresse = new Adresse();
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $adresse->setClient($this->getUser()->getClient());
+            $entityManager->persist($adresse);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('account_profile');
+        }
+
+        return $this->render('account/new.html.twig', [
+            'adresse' => $adresse,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("account/adresse/{id}/edit", name="adresse_edit", methods={"GET","POST"})
+     */
+    public function editadresse(Request $request, Adresse $adresse): Response
+    {
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('account_profile');
+        }
+
+        return $this->render('account/edit.html.twig', [
+            'adresse' => $adresse,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("mon-compte/adresse/delete/{id}", name="adresse_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Adresse $adresse): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$adresse->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($adresse);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('account_profile');
     }
 }
